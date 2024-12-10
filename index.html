@@ -12,7 +12,7 @@
 
     .grid-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 10px;
       padding: 10px;
     }
@@ -50,37 +50,21 @@
     }
 
     .fullscreen img {
-      max-width: 90%;
-      max-height: 80%;
-    }
-
-    .back-button {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      background: none;
-      color: white;
-      border: none;
-      font-size: 20px;
-      cursor: pointer;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
     }
 
     .controls {
-      margin-top: 20px;
-      text-align: center;
+      position: absolute;
+      top: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
     }
 
-    .plus-button {
-      background: white;
-      color: black;
-      border: none;
-      font-size: 24px;
-      cursor: pointer;
-      padding: 10px;
-      border-radius: 50%;
-    }
-
-    .set-wallpaper {
+    .back-button, .set-wallpaper {
       background: #4CAF50;
       color: white;
       border: none;
@@ -88,8 +72,12 @@
       font-size: 18px;
       cursor: pointer;
       border-radius: 5px;
-      margin-top: 10px;
     }
+
+    .set-wallpaper {
+      background: #007BFF;
+    }
+
   </style>
 </head>
 <body>
@@ -106,15 +94,29 @@
     <div class="thumbnail" onclick="openFullscreen('https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg')">
       <img src="https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg" alt="Wallpaper 4">
     </div>
+    <div class="thumbnail" onclick="openFullscreen('https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg')">
+      <img src="https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg" alt="Wallpaper 5">
+    </div>
+    <div class="thumbnail" onclick="openFullscreen('https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg')">
+      <img src="https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg" alt="Wallpaper 6">
+    </div>
+    <div class="thumbnail" onclick="openFullscreen('https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg')">
+      <img src="https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg" alt="Wallpaper 7">
+    </div>
+    <div class="thumbnail" onclick="openFullscreen('https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg')">
+      <img src="https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg" alt="Wallpaper 8">
+    </div>
+    <div class="thumbnail" onclick="openFullscreen('https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg')">
+      <img src="https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg" alt="Wallpaper 9">
+    </div>
   </div>
 
   <div class="fullscreen" id="fullscreen">
-    <button class="back-button" onclick="closeFullscreen()">&#8592; Back</button>
-    <img id="fullscreenImage" src="" alt="Fullscreen Wallpaper">
     <div class="controls">
-      <button class="plus-button" onclick="showSetWallpaper()">+</button>
-      <button id="setWallpaperButton" class="set-wallpaper" onclick="setWallpaper()" style="display: none;">Set Wallpaper</button>
+      <button class="back-button" onclick="closeFullscreen()">&#8592; Back</button>
+      <button id="setWallpaperButton" class="set-wallpaper" onclick="setWallpaper()">Set Wallpaper</button>
     </div>
+    <img id="fullscreenImage" src="" alt="Fullscreen Wallpaper">
   </div>
 
   <script>
@@ -128,11 +130,6 @@
     function closeFullscreen() {
       const fullscreenDiv = document.getElementById('fullscreen');
       fullscreenDiv.style.display = 'none';
-      document.getElementById('setWallpaperButton').style.display = 'none';
-    }
-
-    function showSetWallpaper() {
-      document.getElementById('setWallpaperButton').style.display = 'block';
     }
 
     function setWallpaper() {
