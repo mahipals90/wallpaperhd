@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wallpaper Grid</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      padding: 10px;
+    }
+
+    .thumbnail {
+      cursor: pointer;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .thumbnail img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s;
+    }
+
+    .thumbnail img:hover {
+      transform: scale(1.1);
+    }
+
+    .fullscreen {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      color: white;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 10;
+    }
+
+    .fullscreen img {
+      max-width: 90%;
+      max-height: 80%;
+    }
+
+    .back-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: none;
+      color: white;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .controls {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .plus-button {
+      background: white;
+      color: black;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 50%;
+    }
+
+    .set-wallpaper {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="grid-container">
+    <div class="thumbnail" onclick="openFullscreen('https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg')">
+      <img src="https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg" alt="Wallpaper 1">
+    </div>
+    <div class="thumbnail" onclick="openFullscreen('https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg')">
+      <img src="https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg" alt="Wallpaper 2">
+    </div>
+    <div class="thumbnail" onclick="openFullscreen('https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg')">
+      <img src="https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg" alt="Wallpaper 3">
+    </div>
+    <div class="thumbnail" onclick="openFullscreen('https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg')">
+      <img src="https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg" alt="Wallpaper 4">
+    </div>
+  </div>
+
+  <div class="fullscreen" id="fullscreen">
+    <button class="back-button" onclick="closeFullscreen()">&#8592; Back</button>
+    <img id="fullscreenImage" src="" alt="Fullscreen Wallpaper">
+    <div class="controls">
+      <button class="plus-button" onclick="showSetWallpaper()">+</button>
+      <button id="setWallpaperButton" class="set-wallpaper" onclick="setWallpaper()" style="display: none;">Set Wallpaper</button>
+    </div>
+  </div>
+
+  <script>
+    function openFullscreen(imageSrc) {
+      const fullscreenDiv = document.getElementById('fullscreen');
+      const fullscreenImage = document.getElementById('fullscreenImage');
+      fullscreenImage.src = imageSrc;
+      fullscreenDiv.style.display = 'flex';
+    }
+
+    function closeFullscreen() {
+      const fullscreenDiv = document.getElementById('fullscreen');
+      fullscreenDiv.style.display = 'none';
+      document.getElementById('setWallpaperButton').style.display = 'none';
+    }
+
+    function showSetWallpaper() {
+      document.getElementById('setWallpaperButton').style.display = 'block';
+    }
+
+    function setWallpaper() {
+      alert('Setting wallpaper is not supported in all browsers. Please save the image and set it manually.');
+    }
+  </script>
+</body>
+</html>
