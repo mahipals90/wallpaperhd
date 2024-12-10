@@ -8,6 +8,7 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
+      transition: background-color 2s; /* Animation for background color transition */
     }
 
     .grid-container {
@@ -111,30 +112,41 @@
     </div>
   </div>
 
-  <div class="fullscreen" id="fullscreen" onclick="closeFullscreen()">
+  <div class="fullscreen" id="fullscreen" onclick="closeFullscreen(event)">
     <div class="controls">
-      <button class="back-button" onclick="closeFullscreen()">&#8592; Back</button>
-      <button id="setWallpaperButton" class="set-wallpaper" onclick="setWallpaper()">Set Wallpaper</button>
+      <button class="back-button" onclick="closeFullscreen(event)">&#8592; Back</button>
+      <button id="setWallpaperButton" class="set-wallpaper" onclick="setWallpaper(event)">Set Wallpaper</button>
     </div>
     <img id="fullscreenImage" src="" alt="Fullscreen Wallpaper">
   </div>
 
   <script>
+    let colors = ['yellow', 'orange', 'blue', 'pink', 'red'];
+    let colorIndex = 0;
+
+    // Change background color every time you open fullscreen
+    function changeBackgroundColor() {
+      document.body.style.backgroundColor = colors[colorIndex];
+      colorIndex = (colorIndex + 1) % colors.length; // Loop through colors
+    }
+
     function openFullscreen(imageSrc) {
       const fullscreenDiv = document.getElementById('fullscreen');
       const fullscreenImage = document.getElementById('fullscreenImage');
       fullscreenImage.src = imageSrc;
       fullscreenDiv.style.display = 'flex';
+      changeBackgroundColor();
     }
 
     function closeFullscreen(event) {
-      // Prevent click on image from closing fullscreen
-      if (event.target.tagName === 'IMG') return;
+      event.stopPropagation(); // Prevent event propagation when clicking on buttons
       const fullscreenDiv = document.getElementById('fullscreen');
       fullscreenDiv.style.display = 'none';
+      document.body.style.backgroundColor = ''; // Reset background color
     }
 
-    function setWallpaper() {
+    function setWallpaper(event) {
+      event.stopPropagation(); // Prevent closing fullscreen when clicking button
       alert('Setting wallpaper is not supported in all browsers. Please save the image and set it manually.');
     }
   </script>
