@@ -8,13 +8,13 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      transition: background-color 2s; /* Animation for background color transition */
+      transition: background-color 2s;
     }
 
     .grid-container {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
+      gap: 5px;
       padding: 10px;
     }
 
@@ -115,7 +115,7 @@
   <div class="fullscreen" id="fullscreen" onclick="closeFullscreen(event)">
     <div class="controls">
       <button class="back-button" onclick="closeFullscreen(event)">&#8592; Back</button>
-      <button id="setWallpaperButton" class="set-wallpaper" onclick="setWallpaper(event)">Set Wallpaper</button>
+      <button id="setWallpaperButton" class="set-wallpaper" onclick="downloadWallpaper(event)">Download Wallpaper</button>
     </div>
     <img id="fullscreenImage" src="" alt="Fullscreen Wallpaper">
   </div>
@@ -145,9 +145,14 @@
       document.body.style.backgroundColor = ''; // Reset background color
     }
 
-    function setWallpaper(event) {
+    function downloadWallpaper(event) {
       event.stopPropagation(); // Prevent closing fullscreen when clicking button
-      alert('Setting wallpaper is not supported in all browsers. Please save the image and set it manually.');
+
+      const imageSrc = document.getElementById('fullscreenImage').src;
+      const link = document.createElement('a');
+      link.href = imageSrc;
+      link.download = 'wallpaper.jpg'; // Default name for the downloaded image
+      link.click(); // Trigger the download
     }
   </script>
 </body>
