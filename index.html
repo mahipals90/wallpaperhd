@@ -57,7 +57,7 @@
 
     .controls {
       position: absolute;
-      top: 20px;
+      bottom: 20px;
       width: 100%;
       display: flex;
       justify-content: center;
@@ -111,7 +111,7 @@
     </div>
   </div>
 
-  <div class="fullscreen" id="fullscreen">
+  <div class="fullscreen" id="fullscreen" onclick="closeFullscreen()">
     <div class="controls">
       <button class="back-button" onclick="closeFullscreen()">&#8592; Back</button>
       <button id="setWallpaperButton" class="set-wallpaper" onclick="setWallpaper()">Set Wallpaper</button>
@@ -127,7 +127,9 @@
       fullscreenDiv.style.display = 'flex';
     }
 
-    function closeFullscreen() {
+    function closeFullscreen(event) {
+      // Prevent click on image from closing fullscreen
+      if (event.target.tagName === 'IMG') return;
       const fullscreenDiv = document.getElementById('fullscreen');
       fullscreenDiv.style.display = 'none';
     }
