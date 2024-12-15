@@ -3,170 +3,75 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wallpaper Grid</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      transition: background-color 2s;
-    }
-
-    .grid-container {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 5px;
-      padding: 10px;
-    }
-
-    .thumbnail {
-      cursor: pointer;
-      overflow: hidden;
-      border-radius: 10px;
-    }
-
-    .thumbnail img {
-      width: 100%;
-      height: auto;
-      display: block;
-      transition: transform 0.3s;
-    }
-
-    .thumbnail img:hover {
-      transform: scale(1.1);
-    }
-
-    .fullscreen {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.9);
-      color: white;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      z-index: 10;
-    }
-
-    .fullscreen img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-    }
-
-    .controls {
-      position: absolute;
-      bottom: 20px;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    .back-button, .set-wallpaper {
-      background: #4CAF50;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      font-size: 18px;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-
-    .set-wallpaper {
-      background: #007BFF;
-    }
-
-  </style>
+  <title>Wallpaper App</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.0/dist/sweetalert2.all.min.js"></script>
 </head>
-<body>
-  <div class="grid-container">
-    <div class="thumbnail" onclick="openFullscreen('https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg')">
-      <img src="https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg" alt="Wallpaper 1">
-    </div>
-    <div class="thumbnail" onclick="openFullscreen('https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg')">
-      <img src="https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg" alt="Wallpaper 2">
-    </div>
-    <div class="thumbnail" onclick="openFullscreen('https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg')">
-      <img src="https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg" alt="Wallpaper 3">
-    </div>
-    <div class="thumbnail" onclick="openFullscreen('https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg')">
-      <img src="https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg" alt="Wallpaper 4">
-    </div>
-    <div class="thumbnail" onclick="openFullscreen('https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg')">
-      <img src="https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg" alt="Wallpaper 5">
-    </div>
-    <div class="thumbnail" onclick="openFullscreen('https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg')">
-      <img src="https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg" alt="Wallpaper 6">
-    </div>
-    <div class="thumbnail" onclick="openFullscreen('https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg')">
-      <img src="https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg" alt="Wallpaper 7">
-    </div>
-    <div class="thumbnail" onclick="openFullscreen('https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg')">
-      <img src="https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg" alt="Wallpaper 8">
-    </div>
-    <div class="thumbnail" onclick="openFullscreen('https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg')">
-      <img src="https://cdn.pixabay.com/photo/2024/04/26/18/07/summer-8722382_640.jpg" alt="Wallpaper 9">
+<body class="bg-gray-900 text-white font-sans">
+
+  <div id="app" class="container mx-auto p-4">
+    <!-- Main Page: Wallpaper Grid -->
+    <div id="wallpaper-grid" class="grid grid-cols-3 gap-4">
+      <!-- Thumbnails (3 per row) -->
+      <div class="bg-gray-800 rounded-lg overflow-hidden">
+        <img src="https://images.pexels.com/photos/2486168/pexels-photo-2486168.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" 
+             alt="Wallpaper 1" class="w-full h-full object-cover cursor-pointer" onclick="openFullScreen('wallpaper1')">
+      </div>
+      <div class="bg-gray-800 rounded-lg overflow-hidden">
+        <img src="https://images.pexels.com/photos/2486168/pexels-photo-2486168.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" 
+             alt="Wallpaper 2" class="w-full h-full object-cover cursor-pointer" onclick="openFullScreen('wallpaper2')">
+      </div>
+      <div class="bg-gray-800 rounded-lg overflow-hidden">
+        <img src="https://images.pexels.com/photos/2486168/pexels-photo-2486168.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" 
+             alt="Wallpaper 3" class="w-full h-full object-cover cursor-pointer" onclick="openFullScreen('wallpaper3')">
+      </div>
+      <!-- Repeat for additional wallpaper rows -->
     </div>
   </div>
 
-  <div class="fullscreen" id="fullscreen" onclick="closeFullscreen(event)">
-    <div class="controls">
-      <button class="back-button" onclick="closeFullscreen(event)">&#8592; Back</button>
-      <button id="setWallpaperButton" class="set-wallpaper" onclick="downloadWallpaper(event)">Download Wallpaper</button>
+  <!-- Full Screen View -->
+  <div id="fullscreen-view" class="hidden fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center">
+    <div id="fullscreen-img" class="relative">
+      <img id="wallpaper-full" src="" alt="Fullscreen Wallpaper" class="max-w-full max-h-screen">
+      <button id="set-wallpaper" class="absolute bottom-4 right-4 bg-blue-600 px-4 py-2 rounded-full text-white hidden hover:bg-blue-800 transition-all">Set as Wallpaper</button>
     </div>
-    <img id="fullscreenImage" src="" alt="Fullscreen Wallpaper">
   </div>
 
   <script>
-    let colors = ['yellow', 'orange', 'blue', 'pink', 'red'];
-    let colorIndex = 0;
+    function openFullScreen(wallpaperId) {
+      // Hide the main wallpaper grid and show the full-screen view
+      document.getElementById('wallpaper-grid').classList.add('hidden');
+      document.getElementById('fullscreen-view').classList.remove('hidden');
 
-    // Change background color every time you open fullscreen
-    function changeBackgroundColor() {
-      document.body.style.backgroundColor = colors[colorIndex];
-      colorIndex = (colorIndex + 1) % colors.length; // Loop through colors
+      // Change the full-screen wallpaper image
+      const wallpaperImage = document.getElementById('wallpaper-full');
+      const wallpaperSrc = 'https://images.pexels.com/photos/2486168/pexels-photo-2486168.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
+      wallpaperImage.src = wallpaperSrc;
+
+      // Show the "Set as Wallpaper" button
+      document.getElementById('set-wallpaper').classList.remove('hidden');
+
+      // Add event listener to close full-screen view on click
+      wallpaperImage.addEventListener('click', closeFullScreen);
     }
 
-    function openFullscreen(imageSrc) {
-      const fullscreenDiv = document.getElementById('fullscreen');
-      const fullscreenImage = document.getElementById('fullscreenImage');
-      fullscreenImage.src = imageSrc;
-      fullscreenDiv.style.display = 'flex';
-      changeBackgroundColor();
+    function closeFullScreen() {
+      // Close full-screen view and return to main page
+      document.getElementById('fullscreen-view').classList.add('hidden');
+      document.getElementById('wallpaper-grid').classList.remove('hidden');
+      document.getElementById('set-wallpaper').classList.add('hidden');
     }
 
-    function closeFullscreen(event) {
-      event.stopPropagation(); // Prevent event propagation when clicking on buttons
-      const fullscreenDiv = document.getElementById('fullscreen');
-      fullscreenDiv.style.display = 'none';
-      document.body.style.backgroundColor = ''; // Reset background color
-    }
-
-    function downloadWallpaper(event) {
-      event.stopPropagation(); // Prevent closing fullscreen when clicking button
-
-      const imageSrc = document.getElementById('fullscreenImage').src;
-      const link = document.createElement('a');
-      link.href = imageSrc;
-      link.download = 'wallpaper.jpg'; // Default name for the downloaded image
-      link.click(); // Trigger the download
-    }
+    document.getElementById('set-wallpaper').addEventListener('click', function () {
+      // Show a message that wallpaper has been set (Mock functionality, as setting actual wallpaper is not possible in a browser)
+      Swal.fire({
+        title: 'Success!',
+        text: 'Wallpaper set successfully!',
+        icon: 'success',
+        confirmButtonText: 'OK'
+      });
+      closeFullScreen();
+    });
   </script>
-
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7782866277076875"
-     crossorigin="anonymous"></script>
-<!-- SuperGyan Widget -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-7782866277076875"
-     data-ad-slot="4152291343"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 </body>
 </html>
